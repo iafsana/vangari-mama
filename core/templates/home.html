@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Vangari-Mama</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 flex flex-col min-h-screen font-sans text-gray-800 selection:bg-indigo-100 selection:text-indigo-900">
+
+    <nav class="w-full bg-white shadow-sm py-4 px-6 md:px-12 flex justify-between items-center z-10">
+        
+        <a href="{% url 'home' %}" class="text-2xl font-black text-gray-900 tracking-tight">
+            Vangari-Mama
+        </a>
+
+        <div class="flex items-center space-x-6">
+            {% if user.is_authenticated %}
+                <span class="text-sm font-medium text-gray-600">
+                    Hi, <span class="text-indigo-600 font-bold">{{ user.username }}</span>
+                </span>
+                <form action="{% url 'sign-out' %}" method="POST" class="inline">
+                    {% csrf_token %}
+                    <button type="submit" class="text-sm font-semibold text-gray-500 hover:text-red-600 transition-colors">
+                        Logout
+                    </button>
+                </form>
+            {% else %}
+                <a href="{% url 'sign-in' %}" class="text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors">
+                    Sign In
+                </a>
+                <a href="{% url 'sign-up' %}" class="bg-gray-900 hover:bg-gray-800 text-white text-sm font-semibold py-2.5 px-5 rounded-lg transition-all shadow-sm hover:shadow-md">
+                    Sign-up
+                </a>
+            {% endif %}
+        </div>
+
+    </nav>
+
+    <main class="flex-grow flex flex-col items-center justify-center p-6 text-center">
+        
+        <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 tracking-tight mb-6">
+            Welcome to Vangari-Mama
+        </h1>
+        
+        <p class="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed mb-10">
+            Your centralized marketplace for sustainable scrap trading. Connect, negotiate, and recycle with ease.
+        </p>
+
+        {% if user.is_authenticated %}
+            <a href="#" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-all hover:shadow-lg hover:-translate-y-0.5">
+                Go to Dashboard
+            </a>
+        {% else %}
+            <a href="{% url 'sign-up' %}" class="bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-all hover:shadow-lg hover:-translate-y-0.5">
+                Start Trading Now
+            </a>
+        {% endif %}
+
+    </main>
+
+</body>
+</html>

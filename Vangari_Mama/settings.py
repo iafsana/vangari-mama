@@ -41,10 +41,11 @@ INSTALLED_APPS = [
     'listings',
     'orders',
     'reviews',
-    'user'
+    'user',
+    'core',
 ]
 
-AUTH_USER_MODEL = "user.User"
+# AUTH_USER_MODEL = "user.User"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -1,10 +1,9 @@
 from django.db import models
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from listings.models import ScrapItem
 from django.core.validators import MinValueValidator
 from django.utils import timezone
 
-User = get_user_model()
 
 class Bid(models.Model):
     STATUS_CHOICES = [

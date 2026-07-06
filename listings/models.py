@@ -1,8 +1,8 @@
 from django.db import models
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator
 
-User = get_user_model()
+
 
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
